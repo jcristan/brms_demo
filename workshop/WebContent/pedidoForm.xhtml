@@ -1,0 +1,127 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:a="http://richfaces.org/a4j"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+	
+    <h:form id="pedidoFormForm">
+    	<h:messages/>
+		<div>
+		      <rich:simpleTogglePanel label="Cliente" switchType="ajax">
+		
+	            <f:facet name="header">Realizar Pedido</f:facet>
+				
+				<h:outputText value="Cliente : "/>
+					<h:selectOneMenu value="#{pedidoForm.customer.customerId}" >
+						 <s:selectItems value="#{customerLista}" itemValue="#{customer.customerId}" var="customer" label="#{customer.customerId} #{customer.fname}  " />
+					</h:selectOneMenu>			
+      		
+      		    </rich:simpleTogglePanel>
+		</div>
+		
+
+        <br></br>
+        
+		<rich:simpleTogglePanel label="Productos" switchType="ajax">
+           <f:facet name="header">Productos</f:facet>
+				<s:decorate id="valueField2" template="layout/edit.xhtml">
+				
+				 <div class="results" id="barcodeList">				 
+				    <h:dataTable value="#{lineaPedidoLista}" var="lineaPedido">
+		
+				        <h:column>
+				            <f:facet name="header">
+				            </f:facet>
+				            <!--  
+				            <h:selectBooleanCheckbox value="#{lineaPedido.selected}" />
+				            -->
+				        </h:column>
+						          
+				        <h:column>
+				            <f:facet name="Item Id">
+				                <h:outputText value="ID" />
+				            </f:facet>
+				            <h:outputText value="#{lineaPedido.item.itemId}"/>
+				        </h:column>
+						
+				        <h:column>
+				            <f:facet name="header">
+				                <h:outputText value="Nombre" />
+				            </f:facet>
+				            <h:outputText value="#{lineaPedido.item.description}"/>
+				        </h:column>
+				        
+				        <h:column>
+				            <f:facet name="header">
+				                <h:outputText value="Precio" />
+				            </f:facet>
+				            <h:outputText value="#{lineaPedido.item.sellPrice}" />
+				        </h:column>
+		
+				        <h:column>
+				            <f:facet name="header">
+				                <h:outputText value="Pts" />
+				            </f:facet>
+				            <h:outputText value="#{lineaPedido.item.points}" />
+				        </h:column>
+		
+				        <h:column>
+				            <f:facet name="header">
+				                <h:outputText value="Oferta" />
+				            </f:facet>
+				            <h:outputText value="#{lineaPedido.item.offer}" />
+				        </h:column>
+				        
+				        <h:column>
+				            <f:facet name="header">
+				                <h:outputText value="Cantidad" />
+				            </f:facet>
+				        
+				            	<h:inputText value="#{lineaPedido.quantity}">
+				           	  	<!--<s:validate/> -->	
+				           	  	</h:inputText>
+				           	  
+				        </h:column>
+				        
+				    </h:dataTable>
+				</div>
+
+
+		        
+	      		</s:decorate>      		
+      	</rich:simpleTogglePanel>
+
+			
+		        <div class="actionButtons" align="center">
+		            <h:commandButton id="pedidoFormEvaluar" value="Aceptar" 
+		                    action="#{pedidoForm.pedidoForm}"/>
+		        </div>
+		        
+		        <div>
+				
+		      <rich:simpleTogglePanel label="Datos de la Orden" switchType="ajax">
+		      		 <h3> <li > <h:outputText value="Cliente :"/> <h:outputText value="#{orderInfo.customer.customerId} #{orderInfo.customer.fname}"/> </li>
+		      		<li> <h:outputText value="Cliente Silver:"/> <h:outputText value="#{orderInfo.customer.silver}"/> </li>
+		      		<li> <h:outputText value="Cliente Gold:"/> <h:outputText value="#{orderInfo.customer.gold}"/> </li>
+					<li> <h:outputText value="Fecha Orden :"/> <h:outputText value="#{orderInfo.datePlaced}"/></li>
+					<li> <h:outputText value="Fecha Embarque :"/> <h:outputText value="#{orderInfo.dateShipped}"/></li>
+					<li> <h:outputText value="Fecha Llegada:"/> <h:outputText value="#{orderInfo.arrivalDate}"/></li></h3>
+					<h2> <li>  <h:outputText style="color: Red" value="Descuento : "/> <h:outputText  style="color: Red" value="#{orderInfo.discount}"/> </li>
+					<li> <h:outputText style="color: Blue" size="20" value="Total : "/> <h:outputText style="color: Blue" value="#{orderInfo.total}"><f:convertNumber minFractionDigits="2" /></h:outputText>  </li></h2>
+					
+					<li> <h3> <h:outputText value="Comentario :"/> <h:outputText value="#{orderInfo.comment}"/> </h3>  </li>								
+		      </rich:simpleTogglePanel>
+		</div>
+		        
+    </h:form>
+
+</ui:define>
+
+</ui:composition>

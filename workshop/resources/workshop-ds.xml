@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources>
+   
+   <local-tx-datasource>
+      <jndi-name>workshopDatasource</jndi-name>
+      <use-java-context>true</use-java-context>
+      <connection-url>jdbc:postgresql:sample</connection-url>
+      <driver-class>org.postgresql.Driver</driver-class>
+      <user-name>postgres</user-name>
+      <password>password</password>
+   </local-tx-datasource>
+    
+</datasources>
