@@ -7,10 +7,7 @@
 		<jta-data-source>java:/workshopDatasource</jta-data-source>
 		
 		<class>org.domain.workshop.entity.Barcode</class>
-		<class>org.domain.workshop.entity.Customer</class>
 		<class>org.domain.workshop.entity.Item</class>
-		<class>org.domain.workshop.entity.Orderinfo</class>
-		<class>org.domain.workshop.entity.Orderline</class>
 		<class>org.domain.workshop.entity.OrderlineId</class>
 		<class>org.domain.workshop.entity.Stock</class>
 		<class>org.domain.workshop.entity.CustomerInsert</class>
