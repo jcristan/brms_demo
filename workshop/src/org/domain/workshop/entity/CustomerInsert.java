@@ -43,6 +43,7 @@ public class CustomerInsert implements java.io.Serializable {
 	private Boolean todoRiesgo;
 	private BigDecimal pprima;
 	private BigDecimal vasegurado;
+	private BigDecimal vpoliza;
 	
 	public CustomerInsert() {
 	}
@@ -51,7 +52,7 @@ public class CustomerInsert implements java.io.Serializable {
 			String lname, String addressline, String town, String zipcode,
 			String phone, char gold, char silver, int edad, char genero,
 			String tipo_Vehiculo, String modelo,
-			String marca, String zona_circulacion, boolean rcivil, boolean hurto, boolean perdida, boolean terremoto, boolean todoRiesgo, BigDecimal pprima, BigDecimal vasegurado) {
+			String marca, String zona_circulacion, boolean rcivil, boolean hurto, boolean perdida, boolean terremoto, boolean todoRiesgo, BigDecimal pprima, BigDecimal vasegurado, BigDecimal vpoliza) {
 			this.customerId = customerId;
 			this.title = title;
 			this.fname = fname;
@@ -75,6 +76,7 @@ public class CustomerInsert implements java.io.Serializable {
 			this.todoRiesgo = todoRiesgo;
 			this.pprima = pprima;
 			this.vasegurado = vasegurado;
+			this.vpoliza = vpoliza;
 			
 		}
 	
@@ -334,6 +336,15 @@ public class CustomerInsert implements java.io.Serializable {
 
 	public void setVasegurado(BigDecimal vasegurado) {
 		this.vasegurado = vasegurado;
+	}
+
+	@Column(name = "vpoliza")
+	public BigDecimal getVpoliza() {
+		return vpoliza;
+	}
+
+	public void setVpoliza(BigDecimal vpoliza) {
+		this.vpoliza = vpoliza;
 	}
 
 }

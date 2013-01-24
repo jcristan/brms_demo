@@ -16,9 +16,9 @@
 		<div>
 		      <rich:simpleTogglePanel label="Datos de Cliente" switchType="ajax">
 		
-	            <f:facet name="header">Realizar Insercion de cliente</f:facet>
+	            <f:facet name="header">Realizar calculo para Poliza de Seguros</f:facet>
 				
-				<h:outputText value="Cliente ID (cedula) = "/>
+				<h:outputText value="Cliente ID (DNI) = "/>
 				<h:inputText id="clienteid" value="#{customerInsertForm.customerInsert.customerId}" size="27"/>
 							
 				<br></br>
@@ -26,8 +26,8 @@
 				<h:inputText id="clientenombre" value="#{customerInsertForm.customerInsert.fname}" size="27"/>
 				
 				<br></br>      		
-      			<h:outputText value="Apellido : "/>
-      			<h:inputText id="clienteapellido" value="#{customerInsertForm.customerInsert.lname}" size="27" required="true"/>
+      			<h:outputText value="(*)Apellido : "/>
+      			<h:inputText id="clienteapellido" value="#{customerInsertForm.customerInsert.lname}" size="27" />
       			      			
       			<br></br>
       			<h:outputText value="Genero: "/>
@@ -49,22 +49,72 @@
       			<h:outputText value="Responsabilidad Civil Extraordinaria: "/>
       			<h:selectBooleanCheckbox value="#{customerInsertForm.customerInsert.rcivil}" />
       			
+      			<br></br>
+      			<h:outputText value="Hurto: "/>
+      			<h:selectBooleanCheckbox value="#{customerInsertForm.customerInsert.hurto}" /> 
+      			
+      			<br></br>
+      			<h:outputText value="Perdida: "/>
+      			<h:selectBooleanCheckbox value="#{customerInsertForm.customerInsert.perdida}" />
+      			
+      			<br></br>
+      			<h:outputText value="Terremoto: "/>
+      			<h:selectBooleanCheckbox value="#{customerInsertForm.customerInsert.terremoto}" />
       			
       			<br></br>
       			<h:outputText value="Todo Riesgo: "/>
       			<h:selectBooleanCheckbox value="#{customerInsertForm.customerInsert.todoRiesgo}" />
       			
-      			
+      			<br></br>
       			<h:outputText value="Modelo: "/>
+      			<h:inputText id="clientemodelo" value="#{customerInsertForm.customerInsert.modelo}" size="27" required="true"/>
       			
-      			<h:outputText value="Siniestralidad: "/>
+      			<br></br>
+      			<h:outputText value="Marca: "/>
+      			<h:selectOneMenu value="#{customerInsertForm.customerInsert.marca}">
+   					<f:selectItem itemValue="chevrolet" itemLabel="Chevrolet" />
+   					<f:selectItem itemValue="renault" itemLabel="Renault" />
+   					<f:selectItem itemValue="mazda" itemLabel="Mazda" />
+   					<f:selectItem itemValue="dodge" itemLabel="Dodge" />
+   					<f:selectItem itemValue="audi" itemLabel="Audi" />
+   				</h:selectOneMenu>
       			
-      			<h:outputText value="Continuidad: "/>
-      			<h:outputText value="Valor asegurado: "/>
-      			<h:outputText value="Accesorios Asegurados: "/>
-      			<h:outputText value="Protecciones: "/>
+      			<br></br>
       			<h:outputText value="Zona de Circulacion: "/>
+      			<h:selectOneMenu value="#{customerInsertForm.customerInsert.zona_circulacion}">
+   					<f:selectItem itemValue="quito" itemLabel="Quito" />
+   					<f:selectItem itemValue="manta" itemLabel="Manta" />
+   					<f:selectItem itemValue="guayaquil" itemLabel="Guayaquil" />
+   					<f:selectItem itemValue="cuenca" itemLabel="Cuenca" />
+   				</h:selectOneMenu>
+      			
+      			<br></br>
       			<h:outputText value="Forma de Pago: "/>
+      			<h:selectOneMenu value="formaPago">
+   					<f:selectItem itemValue="anual" itemLabel="Anual" />
+   					<f:selectItem itemValue="semestral" itemLabel="Semestral" />
+   					<f:selectItem itemValue="trimestral" itemLabel="Trimestral" />
+   					<f:selectItem itemValue="mensual" itemLabel="Mensual" />
+   				</h:selectOneMenu>
+      			
+      			<br></br>
+      			<br></br>
+      			<h:outputText value="Valor asegurado: "/>
+      			<h:outputText value="#{customerInsertForm.customerInsert.vasegurado}">
+      				<f:convertNumber minFractionDigits="2" />
+      			</h:outputText>
+      			
+      			<br></br>
+      			<br></br>
+      			<h:outputText value="Porcentaje Prima: "/>
+      			<h:outputText value="#{customerInsertForm.customerInsert.pprima}"/>
+      			
+      			<br></br>
+      			<br></br>
+      			<h:outputText value="Valor de la Poliza: "/>
+      			<h:outputText value="#{customerInsertForm.customerInsert.vpoliza}">
+      				<f:convertNumber minFractionDigits="2" />
+      			</h:outputText>
       			
       		
       		
@@ -77,6 +127,12 @@
       <div class="actionButtons" align="center">
 		            <h:commandButton id="pedidoFormEvaluar" value="Registrar Cliente" 
 		                    action="#{customerInsertForm.insertarCliente()}"/>
+		                    
+		            <br></br>
+		            <br></br>    
+		                    
+		            <h:commandButton id="pedidoFormCalcular" value="Calcular Valor Asegurado" 
+		                    action="#{customerInsertForm.calcularValorAsegurado()}"/>
 		</div>
 	        
     </h:form>

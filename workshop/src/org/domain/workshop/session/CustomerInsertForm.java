@@ -97,10 +97,24 @@ public String insertarCliente(){
 		log.info("Se llama al metodo de insertarCliente");
 		int clienteIDtoinsert = customerInsert.getCustomerId();
 		log.info("id del cliente nuevo a insertar = " + clienteIDtoinsert);
-		log.info("rcivil seleccionado = " + customerInsert.getRcivil());
+		//log.info("rcivil seleccionado = " + customerInsert.getRcivil());
 		
 		boolean todoRiesgo = customerInsert.getTodoRiesgo();
-		log.info("todoRiesgo seleccionado = " + todoRiesgo);
+		log.info("todoRiesgo seleccionado? = " + todoRiesgo);
+		
+		if(todoRiesgo){
+			customerInsert.setRcivil(true);
+			customerInsert.setHurto(true);
+			customerInsert.setPerdida(true);
+			customerInsert.setTerremoto(true);
+			
+			log.info("Todo riesgo seleccionado");
+			log.info("rcivil = " + customerInsert.getRcivil());
+			log.info("hurto = " + customerInsert.getHurto());
+			log.info("perdida = " + customerInsert.getPerdida());
+			log.info("terremoto = " + customerInsert.getTerremoto());
+			
+		}
 		
 		//customertoInsert.setCustomerId(customerId);
 		customerInsert.setTitle("Mr");
@@ -112,13 +126,13 @@ public String insertarCliente(){
 		customerInsert.setPhone("4873871");
 		customerInsert.setGold('1');
 		customerInsert.setSilver('0');
-		customerInsert.setEdad(15);
+		//customerInsert.setEdad(15);
 		//customerInsert.setGenero('M');
 		//customerInsert.setTipo_Vehiculo("Liviano");
 		//customerInsert.setCobertura("B");
-		customerInsert.setMarca("Mazda");
-		customerInsert.setModelo("RX-7");
-		customerInsert.setZona_circulacion("Norte");
+		//customerInsert.setMarca("Mazda");
+		//customerInsert.setModelo("RX-7");
+		//customerInsert.setZona_circulacion("Norte");
 		
 		
 		
@@ -134,5 +148,88 @@ public String insertarCliente(){
 		return "EXITO";
 		
 	}
+
+public String calcularValorAsegurado(){
+	
+	log.info("Se llama al metodo de calcularValorAsegurado");
+		
+	
+	
+	//Valores por defecto para la insercion en la base de datos y prevenir excepciones
+	customerInsert.setTitle("Mr");
+	customerInsert.setAddressline("TheVarn");
+	customerInsert.setTown("timbuctu");
+	customerInsert.setZipcode("OA3");
+	customerInsert.setPhone("4873871");
+	customerInsert.setGold('1');
+	customerInsert.setSilver('0');
+	
+	
+	//Si todo riesgo es seleccionado
+	boolean todoRiesgo = customerInsert.getTodoRiesgo();
+	log.info("todoRiesgo seleccionado? = " + todoRiesgo);
+	if(todoRiesgo){
+		customerInsert.setRcivil(true);
+		customerInsert.setHurto(true);
+		customerInsert.setPerdida(true);
+		customerInsert.setTerremoto(true);
+		
+		log.info("Todo riesgo seleccionado");
+		log.info("rcivil = " + customerInsert.getRcivil());
+		log.info("hurto = " + customerInsert.getHurto());
+		log.info("perdida = " + customerInsert.getPerdida());
+		log.info("terremoto = " + customerInsert.getTerremoto());
+		
+	}
+		
+	
+	//Se calcula el valor asegurado de acuerdo a la marca
+	BigDecimal valorCalculado = new BigDecimal("0.00");
+	String marca = customerInsert.getMarca();
+	
+	if(!(marca == null) && marca.equals("chevrolet")){
+		BigDecimal valorCalculadoChevrolet = new BigDecimal("10000000.00");
+		valorCalculado = valorCalculadoChevrolet;
+		customerInsert.setVasegurado(valorCalculado);
+	}
+	
+	if(!(marca == null) && marca.equals("renault")){
+		BigDecimal valorCalculadoRenault = new BigDecimal("15000000.00");
+		valorCalculado = valorCalculadoRenault;
+		customerInsert.setVasegurado(valorCalculado);
+	}
+	
+	if(!(marca == null) && marca.equals("mazda")){
+		BigDecimal valorCalculadoMazda = new BigDecimal("18000000.00");
+		valorCalculado = valorCalculadoMazda;
+		customerInsert.setVasegurado(valorCalculado);
+	}
+	
+	if(!(marca == null) && marca.equals("dodge")){
+		BigDecimal valorCalculadoDodge = new BigDecimal("21000000.00");
+		valorCalculado = valorCalculadoDodge;
+		customerInsert.setVasegurado(valorCalculado);
+	}
+	
+	if(!(marca == null) && marca.equals("audi")){
+		BigDecimal valorCalculadoAudi = new BigDecimal("25000000.00");
+		valorCalculado = valorCalculadoAudi;
+		customerInsert.setVasegurado(valorCalculado);
+	}
+	
+	
+	log.info("valorCalculado = " + customerInsert.getVasegurado());
+	
+	
+	//Disparar BRM para calcular el porcentaje pprima
+	
+	
+	//Calcular valor de la poliza
+	BigDecimal vpoliza = new BigDecimal("50000000.00");
+	customerInsert.setVpoliza(vpoliza);
+	log.info("vpoliza = " + customerInsert.getVpoliza());
+	
+	return "Calculado";
+}
 	
 }
