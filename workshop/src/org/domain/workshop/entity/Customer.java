@@ -31,7 +31,7 @@ public class Customer implements java.io.Serializable {
 	private int edad;
 	private char genero;
 	private String Tipo_Vehiculo;
-	private String Cobertura;
+	
 	private String Modelo;
 	private String Marca;
 	private String Zona_circulacion;
@@ -209,15 +209,8 @@ public class Customer implements java.io.Serializable {
 		Tipo_Vehiculo = tipo_Vehiculo;
 	}
 
-	@Column(name = "cobertura")
-	public String getCobertura() {
-		return Cobertura;
-	}
-
-	public void setCobertura(String cobertura) {
-		Cobertura = cobertura;
-	}
-
+	
+	
 	@Column(name = "modelo")
 	public String getModelo() {
 		return Modelo;

@@ -2,6 +2,8 @@ package org.domain.workshop.entity;
 
 // Generated Jan 2, 2012 3:00:03 PM by Hibernate Tools 3.4.0.CR1
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -31,7 +33,6 @@ public class CustomerInsert implements java.io.Serializable {
 	private int edad;
 	private char genero;
 	private String tipo_Vehiculo;
-	//private String cobertura;
 	private String modelo;
 	private String marca;
 	private String zona_circulacion;
@@ -40,6 +41,8 @@ public class CustomerInsert implements java.io.Serializable {
 	private Boolean perdida;
 	private Boolean terremoto;
 	private Boolean todoRiesgo;
+	private BigDecimal pprima;
+	private BigDecimal vasegurado;
 	
 	public CustomerInsert() {
 	}
@@ -48,7 +51,7 @@ public class CustomerInsert implements java.io.Serializable {
 			String lname, String addressline, String town, String zipcode,
 			String phone, char gold, char silver, int edad, char genero,
 			String tipo_Vehiculo, String modelo,
-			String marca, String zona_circulacion, boolean rcivil, boolean hurto, boolean perdida, boolean terremoto, boolean todoRiesgo) {
+			String marca, String zona_circulacion, boolean rcivil, boolean hurto, boolean perdida, boolean terremoto, boolean todoRiesgo, BigDecimal pprima, BigDecimal vasegurado) {
 			this.customerId = customerId;
 			this.title = title;
 			this.fname = fname;
@@ -70,6 +73,8 @@ public class CustomerInsert implements java.io.Serializable {
 			this.perdida = perdida;
 			this.terremoto = terremoto;
 			this.todoRiesgo = todoRiesgo;
+			this.pprima = pprima;
+			this.vasegurado = vasegurado;
 			
 		}
 	
@@ -240,16 +245,7 @@ public class CustomerInsert implements java.io.Serializable {
 	public void setTipo_Vehiculo(String tipo_Vehiculo) {
 		this.tipo_Vehiculo = tipo_Vehiculo;
 	}
-
-	/*@Column(name = "amparo")
-	public String getCobertura() {
-		return cobertura;
-	}
-
-	public void setCobertura(String cobertura) {
-		this.cobertura = cobertura;
-	}*/
-
+	
 	@Column(name = "modelo")
 	public String getModelo() {
 		return modelo;
@@ -313,12 +309,31 @@ public class CustomerInsert implements java.io.Serializable {
 		this.terremoto = terremoto;
 	}
 
+	@Column(name = "triesgo")
 	public Boolean getTodoRiesgo() {
 		return todoRiesgo;
 	}
 
 	public void setTodoRiesgo(Boolean todoRiesgo) {
 		this.todoRiesgo = todoRiesgo;
+	}
+
+	@Column(name = "pprima")
+	public BigDecimal getPprima() {
+		return pprima;
+	}
+
+	public void setPprima(BigDecimal pprima) {
+		this.pprima = pprima;
+	}
+
+	@Column(name = "vasegurado")
+	public BigDecimal getVasegurado() {
+		return vasegurado;
+	}
+
+	public void setVasegurado(BigDecimal vasegurado) {
+		this.vasegurado = vasegurado;
 	}
 
 }

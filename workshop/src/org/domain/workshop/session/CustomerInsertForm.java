@@ -100,6 +100,7 @@ public String insertarCliente(){
 		log.info("rcivil seleccionado = " + customerInsert.getRcivil());
 		
 		boolean todoRiesgo = customerInsert.getTodoRiesgo();
+		log.info("todoRiesgo seleccionado = " + todoRiesgo);
 		
 		//customertoInsert.setCustomerId(customerId);
 		customerInsert.setTitle("Mr");
