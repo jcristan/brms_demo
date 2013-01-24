@@ -2,6 +2,7 @@
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 	<persistence-unit name="workshop" transaction-type="JTA">
 		<!--  <provider>ColegiumDatasource</provider> -->
+		
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<jta-data-source>java:/workshopDatasource</jta-data-source>
 		
@@ -12,6 +13,7 @@
 		<class>org.domain.workshop.entity.Orderline</class>
 		<class>org.domain.workshop.entity.OrderlineId</class>
 		<class>org.domain.workshop.entity.Stock</class>
+		<class>org.domain.workshop.entity.CustomerInsert</class>
  		
 		<properties>
 			<property name="jboss.entity.manager.factory.jndi.name" value="java:/workshopEntityManagerFactory"/>

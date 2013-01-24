@@ -28,17 +28,21 @@ public class Customer implements java.io.Serializable {
 	private String phone;
 	private char gold;
 	private char silver;
+	private int edad;
+	private char genero;
 	
 	public Customer() {
 	}
 
 	public Customer(int customerId, String lname, String zipcode, char gold,
-			char silver) {
+			char silver, int edad, char genero) {
 		this.customerId = customerId;
 		this.lname = lname;
 		this.zipcode = zipcode;
 		this.gold = gold;
 		this.silver = silver;
+		this.edad = edad;
+		this.genero = genero;
 	}
 
 	public Customer(int customerId, String title, String fname, String lname,
@@ -154,6 +158,25 @@ public class Customer implements java.io.Serializable {
 
 	public void setSilver(char silver) {
 		this.silver = silver;
+	}
+	
+//Nuevos campos agregados
+	@Column(name = "edad")
+	public int getEdad() {
+		return this.edad;
+	}
+
+	public void setEdad(int edad) {
+		this.edad = edad;
+	}
+	
+	@Column(name = "genero")
+	public char getGenero() {
+		return this.genero;
+	}
+
+	public void setGenero(char genero) {
+		this.genero = genero;
 	}
 
 }

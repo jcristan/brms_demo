@@ -1,0 +1,89 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:a="http://richfaces.org/a4j"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+	
+    <h:form id="insertForm">
+    	<h:messages/>
+		<div>
+		      <rich:simpleTogglePanel label="Datos de Cliente" switchType="ajax">
+		
+	            <f:facet name="header">Realizar Insercion de cliente</f:facet>
+				
+				<h:outputText value="Cliente ID = "/>
+				<h:inputText id="clienteid" value="#{customerInsert.customerId}" size="27"/>
+				
+				
+				<br></br>
+				<h:outputText value="Titulo : "/>
+				
+				<br></br>
+				<h:outputText value="Nombre : "/>
+				
+				<br></br>      		
+      			<h:outputText value="Apellido : "/>
+      			
+      			<br></br>
+      			<h:outputText value="Direccion : "/>
+      			
+      			<br></br>
+      			<h:outputText value="Pueblo : "/>
+      			
+      			<br></br>
+      			<h:outputText value="Codigo Zip : "/>
+      			
+      			<br></br>
+      			<h:outputText value="Telefono : "/>
+      			
+      			<br></br>
+      			<h:outputText value="Miembro Gold : "/>
+      			
+      			<br></br>
+      			<h:outputText value="Miembro Silver ="/>
+      			
+      			<br></br>
+      			<h:outputText value="Edad: "/>
+      			
+      			<br></br>
+      			<h:outputText value="Genero: "/>
+      			     			
+      			
+      			<br></br>
+      			<br></br>
+      			<h:outputText value="Tipo de Vehiculo: "/>
+      			<h:outputText value="Cobertura: "/>
+      			<h:outputText value="Modelo: "/>
+      			<h:outputText value="Siniestralidad: "/>
+      			<h:outputText value="Continuidad: "/>
+      			<h:outputText value="Valor asegurado: "/>
+      			<h:outputText value="Accesorios Asegurados: "/>
+      			<h:outputText value="Protecciones: "/>
+      			<h:outputText value="Zona de Circulacion: "/>
+      			<h:outputText value="Forma de Pago: "/>
+      			
+      		
+      		
+      		    </rich:simpleTogglePanel>
+		</div>
+		
+
+        <br></br>
+     
+      <div class="actionButtons" align="center">
+		            <h:commandButton id="pedidoFormEvaluar" value="Registrar Cliente" 
+		                    action="#{customerInsert.insertarCliente()}"/>
+		</div>
+	        
+    </h:form>
+
+</ui:define>
+
+</ui:composition>

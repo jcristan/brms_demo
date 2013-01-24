@@ -16,12 +16,36 @@
 		<div>
 		      <rich:simpleTogglePanel label="Cliente" switchType="ajax">
 		
-	            <f:facet name="header">Realizar Pedido pa que goze</f:facet>
+	            <f:facet name="header">Realizar Cotizacion</f:facet>
 				
 				<h:outputText value="Cliente : "/>
 					<h:selectOneMenu value="#{pedidoForm.customer.customerId}" >
 						 <s:selectItems value="#{customerLista}" itemValue="#{customer.customerId}" var="customer" label="#{customer.customerId} #{customer.fname}  " />
 					</h:selectOneMenu>			
+      		
+      		
+      			<h:outputText value="Nuevo Cliente ID ="/>
+      			<h:inputText value="#{customer.customerId}" /> 
+      			
+      			<h:outputText value="Edad: "/>
+      			<h:inputText value="#{customer.edad}" />      			
+      			
+      			<h:outputText value="Genero: "/>
+      			     			
+      			
+      			
+      			<h:outputText value="Tipo de Vehiculo: "/>
+      			<h:outputText value="Cobertura: "/>
+      			<h:outputText value="Modelo: "/>
+      			<h:outputText value="Siniestralidad: "/>
+      			<h:outputText value="Continuidad: "/>
+      			<h:outputText value="Valor asegurado: "/>
+      			<h:outputText value="Accesorios Asegurados: "/>
+      			<h:outputText value="Protecciones: "/>
+      			<h:outputText value="Zona de Circulacion: "/>
+      			<h:outputText value="Forma de Pago: "/>
+      			
+      		
       		
       		    </rich:simpleTogglePanel>
 		</div>

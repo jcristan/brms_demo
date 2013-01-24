@@ -103,6 +103,7 @@ public class PedidoForm implements Serializable
     public Customer geCustomerById(int id){
     	return (Customer)entityManager.createQuery("from Customer c where c.customerId =  "+ id).getSingleResult();
     }
+  
     
    @Factory("lineaPedidoLista")                                                               
    public void findItems()
@@ -124,6 +125,8 @@ public class PedidoForm implements Serializable
     public void pedidoForm()
     {
     	try{
+    		//insert en la base de datos
+    		    		   		
 			Iterator<LineaPedido> it = lineaPedidoLista.iterator();
 			orderInfo.setCustomerId(customer.getCustomerId());
 			orderInfo.setDatePlaced(currentDate.getTime());
@@ -188,6 +191,7 @@ public class PedidoForm implements Serializable
 		    
     	}catch (Exception e) {
     		statusMessages.add(e.getLocalizedMessage());
+    		e.printStackTrace();
 		}  
     }
 
@@ -231,4 +235,7 @@ public class PedidoForm implements Serializable
 	       }
 
 	}
+	
+	
+	
 }
