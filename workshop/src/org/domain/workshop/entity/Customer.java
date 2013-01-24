@@ -30,19 +30,22 @@ public class Customer implements java.io.Serializable {
 	private char silver;
 	private int edad;
 	private char genero;
+	private String Tipo_Vehiculo;
+	private String Cobertura;
+	private String Modelo;
+	private String Marca;
+	private String Zona_circulacion;
 	
 	public Customer() {
 	}
 
 	public Customer(int customerId, String lname, String zipcode, char gold,
-			char silver, int edad, char genero) {
+			char silver) {
 		this.customerId = customerId;
 		this.lname = lname;
 		this.zipcode = zipcode;
 		this.gold = gold;
 		this.silver = silver;
-		this.edad = edad;
-		this.genero = genero;
 	}
 
 	public Customer(int customerId, String title, String fname, String lname,
@@ -60,6 +63,23 @@ public class Customer implements java.io.Serializable {
 		this.silver = silver;
 	}
 
+	public Customer(int customerId, String title, String fname, String lname,
+			String addressline, String town, String zipcode, String phone,
+			char gold, char silver,int edad,char genero) {
+		this.customerId = customerId;
+		this.title = title;
+		this.fname = fname;
+		this.lname = lname;
+		this.addressline = addressline;
+		this.town = town;
+		this.zipcode = zipcode;
+		this.phone = phone;
+		this.gold = gold;
+		this.silver = silver;
+		this.edad = edad;
+		this.genero = genero;
+	}
+	
 	@Id
 	@Column(name = "customer_id", unique = true, nullable = false)
 	public int getCustomerId() {
@@ -159,24 +179,70 @@ public class Customer implements java.io.Serializable {
 	public void setSilver(char silver) {
 		this.silver = silver;
 	}
-	
-//Nuevos campos agregados
+
 	@Column(name = "edad")
 	public int getEdad() {
-		return this.edad;
+		return edad;
 	}
 
 	public void setEdad(int edad) {
 		this.edad = edad;
 	}
-	
-	@Column(name = "genero")
+
+	@Column(name = "genero", length = 32)
+	@Length(max = 32)
 	public char getGenero() {
-		return this.genero;
+		return genero;
 	}
 
 	public void setGenero(char genero) {
 		this.genero = genero;
+	}
+
+	@Column(name = "tipovh", length = 32)
+	@Length(max = 32)
+	public String getTipo_Vehiculo() {
+		return Tipo_Vehiculo;
+	}
+
+	public void setTipo_Vehiculo(String tipo_Vehiculo) {
+		Tipo_Vehiculo = tipo_Vehiculo;
+	}
+
+	@Column(name = "cobertura")
+	public String getCobertura() {
+		return Cobertura;
+	}
+
+	public void setCobertura(String cobertura) {
+		Cobertura = cobertura;
+	}
+
+	@Column(name = "modelo")
+	public String getModelo() {
+		return Modelo;
+	}
+
+	public void setModelo(String modelo) {
+		Modelo = modelo;
+	}
+
+	@Column(name = "marca")
+	public String getMarca() {
+		return Marca;
+	}
+
+	public void setMarca(String marca) {
+		Marca = marca;
+	}
+
+	@Column(name = "zona")
+	public String getZona_circulacion() {
+		return Zona_circulacion;
+	}
+
+	public void setZona_circulacion(String zona_circulacion) {
+		Zona_circulacion = zona_circulacion;
 	}
 
 }
