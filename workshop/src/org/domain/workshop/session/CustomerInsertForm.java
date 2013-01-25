@@ -91,49 +91,7 @@ public class CustomerInsertForm implements Serializable
 	
 public String insertarCliente(){
 			
-		log.info("Se llama al metodo de insertarCliente");
-		int clienteIDtoinsert = customerInsert.getCustomerId();
-		log.info("id del cliente nuevo a insertar = " + clienteIDtoinsert);
-		//log.info("rcivil seleccionado = " + customerInsert.getRcivil());
-		
-		boolean todoRiesgo = customerInsert.getTodoRiesgo();
-		log.info("todoRiesgo seleccionado? = " + todoRiesgo);
-		
-		if(todoRiesgo){
-			customerInsert.setRcivil(true);
-			customerInsert.setHurto(true);
-			customerInsert.setPerdida(true);
-			customerInsert.setTerremoto(true);
-			
-			log.info("Todo riesgo seleccionado");
-			log.info("rcivil = " + customerInsert.getRcivil());
-			log.info("hurto = " + customerInsert.getHurto());
-			log.info("perdida = " + customerInsert.getPerdida());
-			log.info("terremoto = " + customerInsert.getTerremoto());
-			
-		}
-		
-		//customertoInsert.setCustomerId(customerId);
-		customerInsert.setTitle("Mr");
-		//customerInsert.setFname("Satanaz");
-		//customerInsert.setLname("Dominicus");
-		customerInsert.setAddressline("TheVarn");
-		customerInsert.setTown("timbuctu");
-		customerInsert.setZipcode("OA3");
-		customerInsert.setPhone("4873871");
-		customerInsert.setGold('1');
-		customerInsert.setSilver('0');
-		//customerInsert.setEdad(15);
-		//customerInsert.setGenero('M');
-		//customerInsert.setTipo_Vehiculo("Liviano");
-		//customerInsert.setCobertura("B");
-		//customerInsert.setMarca("Mazda");
-		//customerInsert.setModelo("RX-7");
-		//customerInsert.setZona_circulacion("Norte");
-		
-		
-		
-		try{
+	try{
 		entityManager.flush();
 		entityManager.persist(customerInsert);
 		}
@@ -219,10 +177,19 @@ public String calcularValorAsegurado(){
 	
 	
 	//Disparar BRM para calcular el porcentaje pprima
+	KnowledgeBase knowledgeBase = createKnowledgeBase();
+    
+    StatefulKnowledgeSession ksession = knowledgeBase.newStatefulKnowledgeSession();
+    ksession.insert(customerInsert);
+    ksession.fireAllRules();
 	
+    BigDecimal pprimaRetornado = customerInsert.getPprima();
+    log.info("pprimaRetornado = " + pprimaRetornado.toString());
 	
 	//Calcular valor de la poliza
-	BigDecimal vpoliza = new BigDecimal("50000000.00");
+	BigDecimal vpoliza = new BigDecimal("0.00");
+	
+	vpoliza = customerInsert.getVasegurado().multiply(pprimaRetornado);
 	customerInsert.setVpoliza(vpoliza);
 	log.info("vpoliza = " + customerInsert.getVpoliza());
 	

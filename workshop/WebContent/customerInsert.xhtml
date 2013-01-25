@@ -15,108 +15,142 @@
     	<h:messages/>
 		<div>
 		      <rich:simpleTogglePanel label="Datos de Cliente" switchType="ajax">
-		
-	            <f:facet name="header">Realizar calculo para Poliza de Seguros</f:facet>
+				<h2><f:facet name="header">Realizar calculo para Poliza de Seguros</f:facet></h2>
+			
+			<center>
+			<table>
+			<tbody>
 				
-				<h:outputText value="Cliente ID (DNI) = "/>
-				<h:inputText id="clienteid" value="#{customerInsertForm.customerInsert.customerId}" size="27"/>
-							
-				<br></br>
-				<h:outputText value="Nombre : "/>
-				<h:inputText id="clientenombre" value="#{customerInsertForm.customerInsert.fname}" size="27"/>
+	            
 				
-				<br></br>      		
-      			<h:outputText value="(*)Apellido : "/>
-      			<h:inputText id="clienteapellido" value="#{customerInsertForm.customerInsert.lname}" size="27" />
+				<tr>
+				<td><h3><h:outputText value="Número Identificación :"/></h3></td>
+				<td><h2><h:inputText id="clienteid" value="#{customerInsertForm.customerInsert.customerId}" size="27"/></h2></td>
+				</tr>		
+				
+				<tr>
+				<td><h3><h:outputText value="Nombre					 			: "/></h3></td>
+				<td><h2><h:inputText id="clientenombre" value="#{customerInsertForm.customerInsert.fname}" size="27"/></h2></td>
+				</tr>
+				
+				<tr>     		
+      			<td><h3><h:outputText value="Apellido				 			: "/></h3></td>
+      			<td><h2><h:inputText id="clienteapellido" value="#{customerInsertForm.customerInsert.lname}" size="27" /></h2></td>
+      			</tr>
       			      			
-      			<br></br>
-      			<h:outputText value="Genero: "/>
-      			<h:selectOneMenu value="#{customerInsertForm.customerInsert.genero}">
+      			<tr>
+      			<td><h3><h:outputText value="Género					 			: "/></h3></td>
+      			<td><h:selectOneMenu value="#{customerInsertForm.customerInsert.genero}">
    					<f:selectItem itemValue="M" itemLabel="Masculino" />
    					<f:selectItem itemValue="F" itemLabel="Femenino" />
-   				</h:selectOneMenu>
+   				</h:selectOneMenu></td>
+      			</tr>
       			
-      			<br></br>
-      			<h:outputText value="Tipo de Vehiculo: "/>
-      			<h:selectOneMenu value="#{customerInsertForm.customerInsert.tipo_Vehiculo}">
+      			
+      			<tr>
+      			<td><h3><h:outputText value="Tipo de Vehículo 					: "/></h3></td>
+      			<td><h:selectOneMenu value="#{customerInsertForm.customerInsert.tipo_Vehiculo}">
    					<f:selectItem itemValue="liviano" itemLabel="Liviano" />
    					<f:selectItem itemValue="motos" itemLabel="Motos" />
    					<f:selectItem itemValue="pesados" itemLabel="Pesados" />
+   				</h:selectOneMenu></td>
+   				</tr>
+      			
+      			<tr>
+      			<td colspan="2">
+      			<center><h2><h:outputText value="-  Tipo de Amparos  -"/></h2></center>
+      			</td>
+      			</tr>
+      			
+      			<tr>
+      			<td><h3><h:outputText value="Responsabilidad Civil Extraordinaria: "/></h3></td>
+      			<td align="left"><h:selectBooleanCheckbox value="#{customerInsertForm.customerInsert.rcivil}" /></td>
+      			</tr>
+      			
+      			<tr>
+      			<td><h3><h:outputText value="Hurto: "/></h3></td>
+      			<td align="left"><h:selectBooleanCheckbox value="#{customerInsertForm.customerInsert.hurto}" /></td> 
+      			</tr>
+      			      			
+      			<tr>
+      			<td><h3><h:outputText value="Pérdida: "/></h3></td>
+      			<td align="left"><h:selectBooleanCheckbox value="#{customerInsertForm.customerInsert.perdida}" /></td>
+      			</tr>
+      			
+      			<tr>
+      			<td><h3><h:outputText value="Terremoto: "/></h3></td>
+      			<td align="left"><h:selectBooleanCheckbox value="#{customerInsertForm.customerInsert.terremoto}" /></td>
+      			</tr>
+      			
+      			<tr>
+      			<td><h3><h:outputText value="Todo Riesgo: "/></h3></td>
+      			<td align="left"><h:selectBooleanCheckbox value="#{customerInsertForm.customerInsert.todoRiesgo}" /></td>
+      			</tr>    			
+      			
+      			<tr>
+      			<td colspan="2">
+      			<center><h2><h:outputText value="-  Descripción General  - "/></h2></center>
+      			</td>
+      			</tr>	
+      			<tr>
+      			<td><h3><h:outputText value="Modelo 						: "/></h3></td>
+      			<td><h:selectOneMenu value="#{customerInsertForm.customerInsert.modelo}">
+   					<f:selectItem itemValue="2000" itemLabel="2000" />
+   					<f:selectItem itemValue="2001" itemLabel="2001" />
+   					<f:selectItem itemValue="2002" itemLabel="2002" />
+   					<f:selectItem itemValue="2003" itemLabel="2003" />
+   					<f:selectItem itemValue="2004" itemLabel="2004" />
+   					<f:selectItem itemValue="2005" itemLabel="2005" />
+   					<f:selectItem itemValue="2006" itemLabel="2006" />
+   					<f:selectItem itemValue="2007" itemLabel="2007" />
+   					<f:selectItem itemValue="2008" itemLabel="2008" />
+   					<f:selectItem itemValue="2009" itemLabel="2009" />
+   					<f:selectItem itemValue="2010" itemLabel="2010" />
+   					<f:selectItem itemValue="2011" itemLabel="2011" />
+   					<f:selectItem itemValue="2012" itemLabel="2012" />
+   					<f:selectItem itemValue="2013" itemLabel="2013" />
    				</h:selectOneMenu>
+   				</td>
+      			</tr>
       			
-      			<h:outputText value="Amparo: "/>
-      			<br></br>
-      			<h:outputText value="Responsabilidad Civil Extraordinaria: "/>
-      			<h:selectBooleanCheckbox value="#{customerInsertForm.customerInsert.rcivil}" />
-      			
-      			<br></br>
-      			<h:outputText value="Hurto: "/>
-      			<h:selectBooleanCheckbox value="#{customerInsertForm.customerInsert.hurto}" /> 
-      			
-      			<br></br>
-      			<h:outputText value="Perdida: "/>
-      			<h:selectBooleanCheckbox value="#{customerInsertForm.customerInsert.perdida}" />
-      			
-      			<br></br>
-      			<h:outputText value="Terremoto: "/>
-      			<h:selectBooleanCheckbox value="#{customerInsertForm.customerInsert.terremoto}" />
-      			
-      			<br></br>
-      			<h:outputText value="Todo Riesgo: "/>
-      			<h:selectBooleanCheckbox value="#{customerInsertForm.customerInsert.todoRiesgo}" />
-      			
-      			<br></br>
-      			<h:outputText value="Modelo: "/>
-      			<h:inputText id="clientemodelo" value="#{customerInsertForm.customerInsert.modelo}" size="27" required="true"/>
-      			
-      			<br></br>
-      			<h:outputText value="Marca: "/>
-      			<h:selectOneMenu value="#{customerInsertForm.customerInsert.marca}">
+      			<tr>
+      			<td><h3><h:outputText value="Marca							 : "/></h3></td>
+      			<td><h:selectOneMenu value="#{customerInsertForm.customerInsert.marca}">
    					<f:selectItem itemValue="chevrolet" itemLabel="Chevrolet" />
    					<f:selectItem itemValue="renault" itemLabel="Renault" />
    					<f:selectItem itemValue="mazda" itemLabel="Mazda" />
    					<f:selectItem itemValue="dodge" itemLabel="Dodge" />
    					<f:selectItem itemValue="audi" itemLabel="Audi" />
    				</h:selectOneMenu>
+   				</td>
+      			</tr>
       			
-      			<br></br>
-      			<h:outputText value="Zona de Circulacion: "/>
-      			<h:selectOneMenu value="#{customerInsertForm.customerInsert.zona_circulacion}">
+      			<tr>      			
+      			<td><h3><h:outputText value="Zona de Circulación			: "/></h3></td>
+      			<td><h:selectOneMenu value="#{customerInsertForm.customerInsert.zona_circulacion}">
    					<f:selectItem itemValue="quito" itemLabel="Quito" />
    					<f:selectItem itemValue="manta" itemLabel="Manta" />
    					<f:selectItem itemValue="guayaquil" itemLabel="Guayaquil" />
    					<f:selectItem itemValue="cuenca" itemLabel="Cuenca" />
    				</h:selectOneMenu>
+   				</td>
+      			</tr>
       			
-      			<br></br>
-      			<h:outputText value="Forma de Pago: "/>
-      			<h:selectOneMenu value="formaPago">
+      			<tr>
+      			<td><h3><h:outputText value="Forma de Pago	 				: "/></h3></td>
+      			<td><h:selectOneMenu value="formaPago">
    					<f:selectItem itemValue="anual" itemLabel="Anual" />
    					<f:selectItem itemValue="semestral" itemLabel="Semestral" />
    					<f:selectItem itemValue="trimestral" itemLabel="Trimestral" />
    					<f:selectItem itemValue="mensual" itemLabel="Mensual" />
    				</h:selectOneMenu>
+   				</td>
+      			</tr>
       			
-      			<br></br>
-      			<br></br>
-      			<h:outputText value="Valor asegurado: "/>
-      			<h:outputText value="#{customerInsertForm.customerInsert.vasegurado}">
-      				<f:convertNumber minFractionDigits="2" />
-      			</h:outputText>
+      			</tbody>
+      			</table>
+      			</center>
       			
-      			<br></br>
-      			<br></br>
-      			<h:outputText value="Porcentaje Prima: "/>
-      			<h:outputText value="#{customerInsertForm.customerInsert.pprima}"/>
-      			
-      			<br></br>
-      			<br></br>
-      			<h:outputText value="Valor de la Poliza: "/>
-      			<h:outputText value="#{customerInsertForm.customerInsert.vpoliza}">
-      				<f:convertNumber minFractionDigits="2" />
-      			</h:outputText>
-      			
-      		
       		
       		    </rich:simpleTogglePanel>
 		</div>
@@ -124,16 +158,46 @@
 
         <br></br>
      
-      <div class="actionButtons" align="center">
+      <center><div class="actionButtons" align="center">
 		            <h:commandButton id="pedidoFormEvaluar" value="Registrar Cliente" 
 		                    action="#{customerInsertForm.insertarCliente()}"/>
-		                    
-		            <br></br>
-		            <br></br>    
-		                    
+		                  
 		            <h:commandButton id="pedidoFormCalcular" value="Calcular Valor Asegurado" 
 		                    action="#{customerInsertForm.calcularValorAsegurado()}"/>
-		</div>
+		</div></center>
+	      
+	      <rich:simpleTogglePanel label="Su poliza de seguros:" switchType="ajax">  
+	        	<center>
+	        	<table>
+	        	<tbody>
+      			
+	        	<tr>
+      			<td><h2><h:outputText value="Valor asegurado: "/></h2></td>
+      			<td><h2><h:outputText value="#{customerInsertForm.customerInsert.vasegurado}">
+      				<f:convertNumber minFractionDigits="2" />
+      			</h:outputText></h2></td>
+      			</tr>
+      			
+      			<tr>
+      			<td><h2><h:outputText value="Porcentaje Prima: "/></h2></td>
+      			<td><h2><h:outputText value="#{customerInsertForm.customerInsert.pprima}    %">
+      				<f:convertNumber minFractionDigits="2" />
+      			</h:outputText>
+      			</h2></td>
+      			</tr>
+      			
+      			<tr>
+      			<td><h2><h:outputText value="Valor de la Poliza: "/></h2></td>
+      			<td><h2><h:outputText value="#{customerInsertForm.customerInsert.vpoliza}">
+      				<f:convertNumber minFractionDigits="2" />
+      			</h:outputText>
+      			</h2></td>
+      			</tr>
+      			</tbody>
+      			</table>
+      			</center>
+	        </rich:simpleTogglePanel>
+	        
 	        
     </h:form>
 
