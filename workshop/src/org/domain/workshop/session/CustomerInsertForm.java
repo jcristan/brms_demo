@@ -173,9 +173,9 @@ public String calcularValorAsegurado(){
 	}
 	
 	
-	log.info("valorCalculado = " + customerInsert.getVasegurado());
+	//log.info("valorCalculado = " + customerInsert.getVasegurado());
 	
-	
+	customerInsert.setPprima(new BigDecimal("0.00"));
 	//Disparar BRM para calcular el porcentaje pprima
 	KnowledgeBase knowledgeBase = createKnowledgeBase();
     
@@ -183,6 +183,7 @@ public String calcularValorAsegurado(){
     ksession.insert(customerInsert);
     ksession.fireAllRules();
 	
+    
     BigDecimal pprimaRetornado = customerInsert.getPprima();
     log.info("pprimaRetornado = " + pprimaRetornado.toString());
 	

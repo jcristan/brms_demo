@@ -24,22 +24,22 @@
 	            
 				
 				<tr>
-				<td><h3><h:outputText value="Número Identificación :"/></h3></td>
+				<td><h3><h:outputText value="Número Identificación : "/></h3></td>
 				<td><h2><h:inputText id="clienteid" value="#{customerInsertForm.customerInsert.customerId}" size="27"/></h2></td>
 				</tr>		
 				
 				<tr>
-				<td><h3><h:outputText value="Nombre					 			: "/></h3></td>
+				<td><h3><h:outputText value="Nombre : "/></h3></td>
 				<td><h2><h:inputText id="clientenombre" value="#{customerInsertForm.customerInsert.fname}" size="27"/></h2></td>
 				</tr>
 				
 				<tr>     		
-      			<td><h3><h:outputText value="Apellido				 			: "/></h3></td>
+      			<td><h3><h:outputText value="Apellido : "/></h3></td>
       			<td><h2><h:inputText id="clienteapellido" value="#{customerInsertForm.customerInsert.lname}" size="27" /></h2></td>
       			</tr>
       			      			
       			<tr>
-      			<td><h3><h:outputText value="Género					 			: "/></h3></td>
+      			<td><h3><h:outputText value="Género: "/></h3></td>
       			<td><h:selectOneMenu value="#{customerInsertForm.customerInsert.genero}">
    					<f:selectItem itemValue="M" itemLabel="Masculino" />
    					<f:selectItem itemValue="F" itemLabel="Femenino" />
@@ -48,7 +48,7 @@
       			
       			
       			<tr>
-      			<td><h3><h:outputText value="Tipo de Vehículo 					: "/></h3></td>
+      			<td><h3><h:outputText value="Tipo de Vehículo: "/></h3></td>
       			<td><h:selectOneMenu value="#{customerInsertForm.customerInsert.tipo_Vehiculo}">
    					<f:selectItem itemValue="liviano" itemLabel="Liviano" />
    					<f:selectItem itemValue="motos" itemLabel="Motos" />
@@ -58,7 +58,7 @@
       			
       			<tr>
       			<td colspan="2">
-      			<center><h2><h:outputText value="-  Tipo de Amparos  -"/></h2></center>
+      			<center><h2><h:outputText value=" -   Tipo de Amparo   - "/></h2></center>
       			</td>
       			</tr>
       			
@@ -86,14 +86,13 @@
       			<td><h3><h:outputText value="Todo Riesgo: "/></h3></td>
       			<td align="left"><h:selectBooleanCheckbox value="#{customerInsertForm.customerInsert.todoRiesgo}" /></td>
       			</tr>    			
-      			
-      			<tr>
+      			     <tr>
       			<td colspan="2">
-      			<center><h2><h:outputText value="-  Descripción General  - "/></h2></center>
+      			<center><h2><h:outputText value=" -   Descripciones generales   - "/></h2></center>
       			</td>
-      			</tr>	
+      			</tr>			
       			<tr>
-      			<td><h3><h:outputText value="Modelo 						: "/></h3></td>
+      			<td><h3><h:outputText value="Modelo: "/></h3></td>
       			<td><h:selectOneMenu value="#{customerInsertForm.customerInsert.modelo}">
    					<f:selectItem itemValue="2000" itemLabel="2000" />
    					<f:selectItem itemValue="2001" itemLabel="2001" />
@@ -114,7 +113,7 @@
       			</tr>
       			
       			<tr>
-      			<td><h3><h:outputText value="Marca							 : "/></h3></td>
+      			<td><h3><h:outputText value="Marca: "/></h3></td>
       			<td><h:selectOneMenu value="#{customerInsertForm.customerInsert.marca}">
    					<f:selectItem itemValue="chevrolet" itemLabel="Chevrolet" />
    					<f:selectItem itemValue="renault" itemLabel="Renault" />
@@ -126,7 +125,7 @@
       			</tr>
       			
       			<tr>      			
-      			<td><h3><h:outputText value="Zona de Circulación			: "/></h3></td>
+      			<td><h3><h:outputText value="Zona de Circulación: "/></h3></td>
       			<td><h:selectOneMenu value="#{customerInsertForm.customerInsert.zona_circulacion}">
    					<f:selectItem itemValue="quito" itemLabel="Quito" />
    					<f:selectItem itemValue="manta" itemLabel="Manta" />
@@ -137,7 +136,7 @@
       			</tr>
       			
       			<tr>
-      			<td><h3><h:outputText value="Forma de Pago	 				: "/></h3></td>
+      			<td><h3><h:outputText value="Forma de Pago: "/></h3></td>
       			<td><h:selectOneMenu value="formaPago">
    					<f:selectItem itemValue="anual" itemLabel="Anual" />
    					<f:selectItem itemValue="semestral" itemLabel="Semestral" />
@@ -180,10 +179,10 @@
       			
       			<tr>
       			<td><h2><h:outputText value="Porcentaje Prima: "/></h2></td>
-      			<td><h2><h:outputText value="#{customerInsertForm.customerInsert.pprima}    %">
+      			<td><h2><h:outputText value="#{customerInsertForm.customerInsert.pprima}">
       				<f:convertNumber minFractionDigits="2" />
       			</h:outputText>
-      			</h2></td>
+      			<h:outputText value="%"/></h2></td>
       			</tr>
       			
       			<tr>

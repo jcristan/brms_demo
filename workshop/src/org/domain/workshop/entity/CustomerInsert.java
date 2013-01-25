@@ -328,6 +328,11 @@ public class CustomerInsert implements java.io.Serializable {
 	public void setPprima(BigDecimal pprima) {
 		this.pprima = pprima;
 	}
+	
+	public void addPprima(BigDecimal pprimaAdd){
+		this.pprima=this.pprima.add(pprimaAdd);
+
+	}
 
 	@Column(name = "vasegurado")
 	public BigDecimal getVasegurado() {
