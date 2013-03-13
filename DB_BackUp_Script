@@ -1,0 +1,523 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Started on 2013-03-13 09:23:31 COT
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = off;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET escape_string_warning = off;
+
+--
+-- TOC entry 6 (class 2615 OID 16388)
+-- Name: sample; Type: SCHEMA; Schema: -; Owner: postgres
+--
+
+CREATE SCHEMA sample;
+
+
+ALTER SCHEMA sample OWNER TO postgres;
+
+SET search_path = sample, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 141 (class 1259 OID 16389)
+-- Dependencies: 6
+-- Name: barcode; Type: TABLE; Schema: sample; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE barcode (
+    barcode_ean character varying(13) NOT NULL,
+    item_id integer NOT NULL
+);
+
+
+ALTER TABLE sample.barcode OWNER TO postgres;
+
+--
+-- TOC entry 142 (class 1259 OID 16433)
+-- Dependencies: 1796 1797 6
+-- Name: customer; Type: TABLE; Schema: sample; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE customer (
+    customer_id integer NOT NULL,
+    title character varying(4),
+    fname character varying(32),
+    lname character varying(32) NOT NULL,
+    addressline character varying(64),
+    town character varying(32),
+    zipcode character varying(10) NOT NULL,
+    phone character varying(16),
+    gold character(1) DEFAULT 0 NOT NULL,
+    silver character(1) DEFAULT 0 NOT NULL,
+    edad integer,
+    genero character(1),
+    tipovh character varying(32),
+    marca character varying(32),
+    modelo character varying(32),
+    zona character varying(32),
+    rcivil boolean,
+    hurto boolean,
+    perdida boolean,
+    terremoto boolean,
+    pprima numeric(7,2),
+    vasegurado numeric(10,2),
+    triesgo boolean,
+    vpoliza numeric(20,2)
+);
+
+
+ALTER TABLE sample.customer OWNER TO postgres;
+
+--
+-- TOC entry 143 (class 1259 OID 16438)
+-- Dependencies: 142 6
+-- Name: customer_customer_id_seq; Type: SEQUENCE; Schema: sample; Owner: postgres
+--
+
+CREATE SEQUENCE customer_customer_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE sample.customer_customer_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 1832 (class 0 OID 0)
+-- Dependencies: 143
+-- Name: customer_customer_id_seq; Type: SEQUENCE OWNED BY; Schema: sample; Owner: postgres
+--
+
+ALTER SEQUENCE customer_customer_id_seq OWNED BY customer.customer_id;
+
+
+--
+-- TOC entry 1833 (class 0 OID 0)
+-- Dependencies: 143
+-- Name: customer_customer_id_seq; Type: SEQUENCE SET; Schema: sample; Owner: postgres
+--
+
+SELECT pg_catalog.setval('customer_customer_id_seq', 29, true);
+
+
+--
+-- TOC entry 144 (class 1259 OID 16440)
+-- Dependencies: 1799 1800 6
+-- Name: item; Type: TABLE; Schema: sample; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE item (
+    item_id integer NOT NULL,
+    description character varying(64) NOT NULL,
+    cost_price numeric(7,2),
+    sell_price numeric(7,2),
+    points integer DEFAULT 100 NOT NULL,
+    offer character(1) DEFAULT 0 NOT NULL
+);
+
+
+ALTER TABLE sample.item OWNER TO postgres;
+
+--
+-- TOC entry 145 (class 1259 OID 16445)
+-- Dependencies: 144 6
+-- Name: item_item_id_seq; Type: SEQUENCE; Schema: sample; Owner: postgres
+--
+
+CREATE SEQUENCE item_item_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE sample.item_item_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 1834 (class 0 OID 0)
+-- Dependencies: 145
+-- Name: item_item_id_seq; Type: SEQUENCE OWNED BY; Schema: sample; Owner: postgres
+--
+
+ALTER SEQUENCE item_item_id_seq OWNED BY item.item_id;
+
+
+--
+-- TOC entry 1835 (class 0 OID 0)
+-- Dependencies: 145
+-- Name: item_item_id_seq; Type: SEQUENCE SET; Schema: sample; Owner: postgres
+--
+
+SELECT pg_catalog.setval('item_item_id_seq', 22, true);
+
+
+--
+-- TOC entry 146 (class 1259 OID 16447)
+-- Dependencies: 1802 6
+-- Name: orderinfo; Type: TABLE; Schema: sample; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE orderinfo (
+    orderinfo_id integer NOT NULL,
+    customer_id integer NOT NULL,
+    date_placed date NOT NULL,
+    date_shipped date,
+    shipping numeric(7,2),
+    comment character varying(200),
+    total numeric(7,2),
+    arrival_date date,
+    discount numeric(7,2) DEFAULT 0.00 NOT NULL
+);
+
+
+ALTER TABLE sample.orderinfo OWNER TO postgres;
+
+--
+-- TOC entry 147 (class 1259 OID 16451)
+-- Dependencies: 6 146
+-- Name: orderinfo_orderinfo_id_seq; Type: SEQUENCE; Schema: sample; Owner: postgres
+--
+
+CREATE SEQUENCE orderinfo_orderinfo_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE sample.orderinfo_orderinfo_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 1836 (class 0 OID 0)
+-- Dependencies: 147
+-- Name: orderinfo_orderinfo_id_seq; Type: SEQUENCE OWNED BY; Schema: sample; Owner: postgres
+--
+
+ALTER SEQUENCE orderinfo_orderinfo_id_seq OWNED BY orderinfo.orderinfo_id;
+
+
+--
+-- TOC entry 1837 (class 0 OID 0)
+-- Dependencies: 147
+-- Name: orderinfo_orderinfo_id_seq; Type: SEQUENCE SET; Schema: sample; Owner: postgres
+--
+
+SELECT pg_catalog.setval('orderinfo_orderinfo_id_seq', 43, true);
+
+
+--
+-- TOC entry 148 (class 1259 OID 16453)
+-- Dependencies: 6
+-- Name: orderline; Type: TABLE; Schema: sample; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE orderline (
+    orderinfo_id integer NOT NULL,
+    item_id integer NOT NULL,
+    quantity integer NOT NULL
+);
+
+
+ALTER TABLE sample.orderline OWNER TO postgres;
+
+--
+-- TOC entry 149 (class 1259 OID 16456)
+-- Dependencies: 6
+-- Name: stock; Type: TABLE; Schema: sample; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE stock (
+    item_id integer NOT NULL,
+    quantity integer NOT NULL
+);
+
+
+ALTER TABLE sample.stock OWNER TO postgres;
+
+--
+-- TOC entry 1798 (class 2604 OID 16459)
+-- Dependencies: 143 142
+-- Name: customer_id; Type: DEFAULT; Schema: sample; Owner: postgres
+--
+
+ALTER TABLE ONLY customer ALTER COLUMN customer_id SET DEFAULT nextval('customer_customer_id_seq'::regclass);
+
+
+--
+-- TOC entry 1801 (class 2604 OID 16460)
+-- Dependencies: 145 144
+-- Name: item_id; Type: DEFAULT; Schema: sample; Owner: postgres
+--
+
+ALTER TABLE ONLY item ALTER COLUMN item_id SET DEFAULT nextval('item_item_id_seq'::regclass);
+
+
+--
+-- TOC entry 1803 (class 2604 OID 16461)
+-- Dependencies: 147 146
+-- Name: orderinfo_id; Type: DEFAULT; Schema: sample; Owner: postgres
+--
+
+ALTER TABLE ONLY orderinfo ALTER COLUMN orderinfo_id SET DEFAULT nextval('orderinfo_orderinfo_id_seq'::regclass);
+
+
+--
+-- TOC entry 1821 (class 0 OID 16389)
+-- Dependencies: 141
+-- Data for Name: barcode; Type: TABLE DATA; Schema: sample; Owner: postgres
+--
+
+COPY barcode (barcode_ean, item_id) FROM stdin;
+4587263646878  12
+9879879837489	13
+2239872376872	14
+6241527836173	20
+6241574635234	14
+6264537836173	13
+6241527746363	17
+7465743843764	16
+3453458677628	12
+6434564564544	14
+8476736836876	18
+6241234586487	17
+9473625532534	16
+9473627464543	15
+\.
+
+
+--
+-- TOC entry 1822 (class 0 OID 16433)
+-- Dependencies: 142
+-- Data for Name: customer; Type: TABLE DATA; Schema: sample; Owner: postgres
+--
+
+COPY customer (customer_id, title, fname, lname, addressline, town, zipcode, phone, gold, silver, edad, genero, tipovh, marca, modelo, zona, rcivil, hurto, perdida, terremoto, pprima, vasegurado, triesgo, vpoliza) FROM stdin;
+19	Mr	Richard	Stones	34 Holly Way	Bingham	BG4 2WE	342 5982	0	0	30	F	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+20	Mrs	Ann	Stones	34 Holly Way	Bingham	BG4 2WE	342 5982	0	0	45	M	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+21	Mrs	Christine	Hickman	36 Queen Street	Histon	HT3 5EM	342 5432	0	0	50	F	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+22	Mr	Mike	Howard	86 Dysart Street	Tibsville	TB3 7FG	505 5482	0	0	55	M	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+23	Mr	Dave	Jones	54 Vale Rise	Bingham	BG3 8GD	342 8264	0	0	30	M	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+24	Mr	Richard	Neill	42 Thatched Way	Winnersby	WB3 6GQ	505 6482	0	0	54	M	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+25	Mrs	Laura	Hardy	73 Margarita Way	Oxbridge	OX2 3HX	821 2335	0	0	25	F	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+26	Mr	Bill	ONeill	2 Beamer Street	Welltown	WT3 8GM	435 1234	0	0	34	M	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+27	Mr	David	Hudson	4 The Square	Milltown	MT2 6RT	961 4526	0	0	33	M	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+28	Miss	Jenny	Stones	27 Rowan Avenue	Hightown	NT2 1AQ	023 9876	1	0	55	F	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+29	Mr	Andrew	Stones	52 The Willows	Lowtown	LT5 7RA	876 3527	0	1	44	M	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+18	Mr	Neil	Matthew	5 Pasture Lane	Nicetown	NT3 7RT	267 1232	0	0	28	F	Liviano	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+89	\N	\N	123456	\N	\N	call	\N	1	0	0	 	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+55	Mr	Satanaz	Dominicus	TheVarn	timbuctu	OA3	4873871	1	0	15	M	Liviano	Mazda	RX-7	Norte	\N	\N	\N	\N	\N	\N	\N	\N
+66	Mr	Satanaz	Dominicus	TheVarn	timbuctu	OA3	4873871	1	0	15	M	Liviano	Mazda	RX-7	Norte	\N	\N	\N	\N	\N	\N	\N	\N
+99	Mr	Satanaz	Dominicus	TheVarn	timbuctu	OA3	4873871	1	0	15	M	Liviano	Mazda	RX-7	Norte	\N	\N	\N	\N	\N	\N	\N	\N
+16	Mr	Adrian	Matthew	The Barn	Yuleville	YV67 2WR	487 3871	0	0	20	M	\N	\N	\N	\N	t	\N	\N	\N	\N	\N	\N	\N
+17	Mr	Simon	Cozens	7 Shady Lane	Oakenham	OA3 6QW	514 5926	0	0	25	M	\N	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N
+101	Mr	pichon	chochon	TheVarn	timbuctu	OA3	4873871	1	0	15	F	motos	Mazda	RX-7	Norte	t	\N	\N	\N	\N	\N	t	\N
+102	Mr	pichon	chochonnon	TheVarn	timbuctu	OA3	4873871	1	0	15	M	motos	Mazda	RX-7	Norte	t	\N	\N	\N	\N	\N	f	\N
+103	Mr	Mandra	que	TheVarn	timbuctu	OA3	4873871	1	0	0	M	motos	mazda	sabetu	guayaquil	t	t	t	t	\N	\N	t	\N
+104	Mr	Mister	Master	TheVarn	timbuctu	OA3	4873871	1	0	0	F	pesados	audi	cacharro	guayaquil	t	t	t	t	\N	25000000.00	t	\N
+123	Mr	Ana	Crist	TheVarn	timbuctu	OA3	4873871	1	0	0	M	liviano	chevrolet	2010	quito	t	t	f	f	8.52	10000.00	f	852.00
+\.
+
+
+--
+-- TOC entry 1823 (class 0 OID 16440)
+-- Dependencies: 144
+-- Data for Name: item; Type: TABLE DATA; Schema: sample; Owner: postgres
+--
+
+COPY item (item_id, description, cost_price, sell_price, points, offer) FROM stdin;
+12	Rubik Cube	7.45	11.49	100	0
+13	Linux CD	1.99	2.49	100	0
+14	Tissues	2.11	3.99	100	0
+15	Picture Frame	7.54	9.95	100	0
+16	Fan Small	9.23	15.75	100	0
+17	Fan Large	13.36	19.95	100	0
+18	Toothbrush	0.75	1.45	100	0
+19	Roman Coin	2.34	2.45	100	0
+20	Carrier Bag	0.01	0.00	100	0
+21	Speakers	19.73	25.32	100	0
+22	Wood Puzzle	15.23	21.95	100	1
+\.
+
+
+--
+-- TOC entry 1824 (class 0 OID 16447)
+-- Dependencies: 146
+-- Data for Name: orderinfo; Type: TABLE DATA; Schema: sample; Owner: postgres
+--
+
+COPY orderinfo (orderinfo_id, customer_id, date_placed, date_shipped, shipping, comment, total, arrival_date, discount) FROM stdin;
+31	16	2004-03-13	2004-03-17	2.99	\N	\N	\N	0.00
+32	17	2004-06-23	2004-06-24	0.00	\N	\N	\N	0.00
+33	19	2004-09-02	2004-09-12	3.99	\N	\N	\N	0.00
+34	18	2004-09-03	2004-09-10	2.99	\N	\N	\N	0.00
+35	20	2004-07-21	2004-07-24	0.00	\N	\N	\N	0.00
+36	21	2012-01-04	2012-01-04	0.00	\N	\N	\N	0.00
+37	22	2012-01-04	2012-01-04	0.00	\N	\N	\N	0.00
+38	21	2012-01-17	2012-01-17	0.00	\N	0.00	2012-01-17	0.00
+39	21	2012-01-17	2012-01-17	0.00	\N	0.00	2012-01-17	0.00
+40	21	2012-01-17	2012-01-17	0.00	\N	0.00	2012-01-17	0.00
+41	28	2012-01-18	2012-01-18	0.00	\N	0.00	2012-01-18	0.00
+42	29	2012-01-18	2012-01-18	0.00	\N	0.00	2012-01-18	0.00
+\.
+
+
+--
+-- TOC entry 1825 (class 0 OID 16453)
+-- Dependencies: 148
+-- Data for Name: orderline; Type: TABLE DATA; Schema: sample; Owner: postgres
+--
+
+COPY orderline (orderinfo_id, item_id, quantity) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1826 (class 0 OID 16456)
+-- Dependencies: 149
+-- Data for Name: stock; Type: TABLE DATA; Schema: sample; Owner: postgres
+--
+
+COPY stock (item_id, quantity) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1805 (class 2606 OID 16463)
+-- Dependencies: 141 141
+-- Name: barcode_pk; Type: CONSTRAINT; Schema: sample; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY barcode
+    ADD CONSTRAINT barcode_pk PRIMARY KEY (barcode_ean);
+
+
+--
+-- TOC entry 1807 (class 2606 OID 16466)
+-- Dependencies: 142 142
+-- Name: customer_pk; Type: CONSTRAINT; Schema: sample; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY customer
+    ADD CONSTRAINT customer_pk PRIMARY KEY (customer_id);
+
+
+--
+-- TOC entry 1809 (class 2606 OID 16468)
+-- Dependencies: 144 144
+-- Name: item_pk; Type: CONSTRAINT; Schema: sample; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY item
+    ADD CONSTRAINT item_pk PRIMARY KEY (item_id);
+
+
+--
+-- TOC entry 1811 (class 2606 OID 16470)
+-- Dependencies: 146 146
+-- Name: orderinfo_pk; Type: CONSTRAINT; Schema: sample; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY orderinfo
+    ADD CONSTRAINT orderinfo_pk PRIMARY KEY (orderinfo_id);
+
+
+--
+-- TOC entry 1813 (class 2606 OID 16472)
+-- Dependencies: 148 148 148
+-- Name: orderline_pk; Type: CONSTRAINT; Schema: sample; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY orderline
+    ADD CONSTRAINT orderline_pk PRIMARY KEY (orderinfo_id, item_id);
+
+
+--
+-- TOC entry 1815 (class 2606 OID 16474)
+-- Dependencies: 149 149
+-- Name: stock_pk; Type: CONSTRAINT; Schema: sample; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY stock
+    ADD CONSTRAINT stock_pk PRIMARY KEY (item_id);
+
+
+--
+-- TOC entry 1816 (class 2606 OID 16475)
+-- Dependencies: 141 144 1808
+-- Name: barcode_item_id_fk; Type: FK CONSTRAINT; Schema: sample; Owner: postgres
+--
+
+ALTER TABLE ONLY barcode
+    ADD CONSTRAINT barcode_item_id_fk FOREIGN KEY (item_id) REFERENCES item(item_id);
+
+
+--
+-- TOC entry 1817 (class 2606 OID 16480)
+-- Dependencies: 142 146 1806
+-- Name: orderinfo_customer_id_fk; Type: FK CONSTRAINT; Schema: sample; Owner: postgres
+--
+
+ALTER TABLE ONLY orderinfo
+    ADD CONSTRAINT orderinfo_customer_id_fk FOREIGN KEY (customer_id) REFERENCES customer(customer_id);
+
+
+--
+-- TOC entry 1818 (class 2606 OID 16485)
+-- Dependencies: 1808 144 148
+-- Name: orderline_item_id_fk; Type: FK CONSTRAINT; Schema: sample; Owner: postgres
+--
+
+ALTER TABLE ONLY orderline
+    ADD CONSTRAINT orderline_item_id_fk FOREIGN KEY (item_id) REFERENCES item(item_id);
+
+
+--
+-- TOC entry 1819 (class 2606 OID 16490)
+-- Dependencies: 1810 148 146
+-- Name: orderline_orderinfo_id_fk; Type: FK CONSTRAINT; Schema: sample; Owner: postgres
+--
+
+ALTER TABLE ONLY orderline
+    ADD CONSTRAINT orderline_orderinfo_id_fk FOREIGN KEY (orderinfo_id) REFERENCES orderinfo(orderinfo_id);
+
+
+--
+-- TOC entry 1820 (class 2606 OID 16495)
+-- Dependencies: 1808 144 149
+-- Name: stock_item_id_fk; Type: FK CONSTRAINT; Schema: sample; Owner: postgres
+--
+
+ALTER TABLE ONLY stock
+    ADD CONSTRAINT stock_item_id_fk FOREIGN KEY (item_id) REFERENCES item(item_id);
+
+
+--
+-- TOC entry 1831 (class 0 OID 0)
+-- Dependencies: 3
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2013-03-13 09:23:31 COT
+
+--
+-- PostgreSQL database dump complete
+--
